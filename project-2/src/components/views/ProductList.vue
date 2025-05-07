@@ -2,18 +2,18 @@
     <div class="popular-items py-5">
       <div class="container">
         <h4 class="mb-4 fw-semibold">Popular Items</h4>
-        <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 g-4">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
           <div v-for="(item, index) in items" :key="index" class="col">
             <router-link :to="{ name: 'productdetail' }" class="text-decoration-none text-dark">
-            <div class="card h-100">
-              <img :src="item.image" class="card-img-top" :alt="item.name" />
-              <div class="card-body p-2">
-                <h6 class="card-title text-truncate">{{ item.name }}</h6>
-                <p class="text-muted mb-1 small">{{ item.brand }}</p>
-                <strong class="text-dark">{{ formatPrice(item.price) }}</strong>
+              <div class="card h-100 shadow-sm">
+                <img :src="item.image" class="card-img-top" :alt="item.name" />
+                <div class="card-body">
+                  <h6 class="card-title text-truncate mb-1 fw-semibold">{{ item.name }}</h6>
+                  <p class="text-muted small mb-1">{{ item.brand }}</p>
+                  <strong class="text-dark d-block">{{ formatPrice(item.price) }}</strong>
+                </div>
               </div>
-            </div>
-          </router-link>
+            </router-link>
           </div>
         </div>
       </div>
@@ -24,7 +24,7 @@
   import bannerImage from '@/assets/banner-home.jpg';
   
   export default {
-    name: 'PopularItem',
+    name: 'ProductList',
     data() {
       return {
         items: [
@@ -47,17 +47,28 @@
   };
   </script>
   
-  
   <style scoped>
-  .popular-items{
-    margin-bottom:80px;
+  .popular-items {
+    margin: 0;
+    padding: 0;
+    width: 90vw;
+    height: 100vh; /* Pastikan mengisi seluruh tinggi layar */
+    overflow: hidden;
+    margin-bottom: 80px;
   }
+  
   .card-img-top {
-    height: 200px;
+    height: 220px;
     object-fit: cover;
     border-bottom: 1px solid #f0f0f0;
-
   }
   
+  .card {
+    transition: transform 0.2s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-4px);
+  }
   </style>
   
